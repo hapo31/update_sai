@@ -1,0 +1,14 @@
+﻿<Window x:Class="update_name.OAuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PINコードをテキストボックスに入力してください" Height="123" Width="401" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="104*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="{Binding Path=ButtonText, Mode=OneWay}" HorizontalAlignment="Left" Margin="4,10,0,10" Width="75" RenderTransformOrigin="0.013,-0.417" Click="Button_Click" IsEnabled="{Binding ButtonEnable}"/>
+        <TextBox Text="{Binding Path=PINText, Mode=OneWayToSource}" Margin="84,10,10,10" TextWrapping="Wrap" FontSize="35" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2" IsEnabled="{Binding ButtonEnable}"/>
+
+    </Grid>
+</Window>

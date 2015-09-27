@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:update_name" mc:Ignorable="d" x:Class="update_name.MainWindow"
+        Title="{Binding Path=tokens.ScreenName, Mode=OneWay}" Height="303.014" Width="525" ResizeMode="CanResizeWithGrip"
+        >
+
+    <Grid Margin="0,0,0,2">
+        <StatusBar Height="32" VerticalAlignment="Bottom" Margin="0,0,10,0">
+            <StatusBarItem Content="{Binding UserNameText}" Height="32" VerticalAlignment="Stretch" Width="156"/>
+            <StatusBarItem Content="{Binding StatusText}" Height="32" VerticalAlignment="Stretch" Width="336"/>
+        </StatusBar>
+        <Menu RenderTransformOrigin="0.486,-4" Height="27" VerticalAlignment="Top">
+            <MenuItem Header="メニュー" HorizontalContentAlignment="Center" Width="150">
+                <MenuItem Header="認証" Click="OAuthMenuItemClick" HorizontalAlignment="Left" Width="140"/>
+
+            </MenuItem>
+        </Menu>
+        <Button Content="update 菜" FontSize="40" Margin="10,32,10,37"  Click="StartUpdatenameButton"/>
+    </Grid>
+</Window>
