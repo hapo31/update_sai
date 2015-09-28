@@ -20,7 +20,7 @@ namespace update_name
         public const string ButtonTextStreamStart = "TL監視の開始";
         public const string ButtonTextStreamStop = "TL監視の停止";
 
-        public const string UpdateNameRegex = "^([^(?!RT)|(?!@)]).+菜$";
+        public const string UpdateNameRegex = "^(?!RT|@).+菜$";
 
 
     }

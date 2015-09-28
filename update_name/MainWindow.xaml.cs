@@ -38,7 +38,11 @@ namespace update_name
         public string ButtonText
         {
             get { return button_text; }
-            set { OnPropertyChanged("ButtonText"); button_text = value; }
+            set
+            {
+                button_text = value;
+                OnPropertyChanged("ButtonText");
+            }
         }
 
         //User Streamが有効かどうか
@@ -47,21 +51,39 @@ namespace update_name
             get; set;
         }
 
+        private bool startbutton_enable;
         public bool StartButtonEnable
         {
-            get; private set;
+            get { return startbutton_enable; }
+            private set
+            {
+                startbutton_enable = value;
+                OnPropertyChanged("StartButtonEnable");
+            }
         }
 
+        private string username_text;
         //認証済みの場合はユーザー名を表示
         public string UserNameText
         {
-            get; private set;
+            get { return username_text; }
+            private set
+            {
+                username_text = value;
+                OnPropertyChanged("UserNameText");
+            }
         }
 
+        private string status_text;
         //アプリの状態を表示
         public string StatusText
         {
-            get; private set;
+            get { return status_text; }
+            private set
+            {
+                status_text = value;
+                OnPropertyChanged("StatusText");
+            }
         }
 
         public MainWindow()
@@ -71,24 +93,7 @@ namespace update_name
             IsStreaming = false;
 
             //以前認証したデータを読み込む
-            var ud = LoadTokens();
-
-            //データが見つかれば読み込む
-            if(ud != null)
-            {
-                userdata = ud;
-                UserNameText = userdata.UserName;
-                ButtonText = App.ButtonTextStreamStart;
-                StatusText = "認証成功";
-                StartButtonEnable = true;
-            }
-            //見つからなければ認証を促す
-            else
-            {
-                StatusText = "認証してください";
-                StartButtonEnable = false;
-            }
-            OnPropertyChanged("StartButtonEnable");
+            LoadTokens();
         }
         
 
@@ -135,24 +140,29 @@ namespace update_name
         {
             var OAuthWindow = new OAuthWindow();
             OAuthWindow.ShowDialog();
-            var udl = new UserDataLoader(App.userprofile_filename);
-            if(udl.UserDataExist())
-            {
-                StartButtonEnable = true;
-            }
-            userdata = udl.Userdata;
+            LoadTokens();
         }
 
-        private UserData LoadTokens()
+        private bool LoadTokens()
         {
             var udl = new UserDataLoader(App.userprofile_filename);
             if (udl.Userdata != null)
             {
                 tokens = udl.GetCoreTweetTokens(App.consumer_key, App.consumer_secret);
-                return udl.Userdata;
+                userdata = udl.Userdata;
+                UserNameText = userdata.UserName;
+                StatusText = "認証成功";
+                StartButtonEnable = true;
+
+                return true;
             }
             else
-                return null;
+            {
+                StatusText = "認証してください";
+                StartButtonEnable = false;
+
+                return false;
+            }
         }
 
 
@@ -183,7 +193,6 @@ namespace update_name
             StatusText = str;
             OnPropertyChanged("StatusText");
         }
-
     }
 
 

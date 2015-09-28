@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:update_name" mc:Ignorable="d" x:Class="update_name.MainWindow"
-        Title="{Binding Path=tokens.ScreenName, Mode=OneWay}" Height="303.014" Width="525" ResizeMode="CanResizeWithGrip"
+        Title="update_菜" Height="303.014" Width="525" ResizeMode="CanResizeWithGrip"
         >
 
     <Grid Margin="0,0,0,2">
@@ -16,6 +16,6 @@
 
             </MenuItem>
         </Menu>
-        <Button Content="update 菜" FontSize="40" Margin="10,32,10,37"  Click="StartUpdatenameButton"/>
+        <Button Content="update 菜" IsEnabled="{Binding StartButtonEnable}" FontSize="40" Margin="10,32,10,37"  Click="StartUpdatenameButton"/>
     </Grid>
 </Window>
